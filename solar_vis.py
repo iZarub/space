@@ -1,5 +1,8 @@
 # coding: utf-8
 # license: GPLv3
+import numpy
+import pygame
+from pygame.draw import *
 
 """Модуль визуализации.
 Нигде, кроме этого модуля, не используются экранные координаты объектов.
@@ -58,16 +61,8 @@ def scale_y(y):
 
 
 def create_star_image(space, star):
-    """Создаёт отображаемый объект звезды.
+    circle(space, star.color, (star.x, star.y), star.r)
 
-    Параметры:
-
-    **space** — холст для рисования.
-
-    **star** — объект звезды.
-    """
-
-    pass
 
 
 def create_planet_image(space, planet):
@@ -97,15 +92,8 @@ def update_system_name(space, system_name):
 
 
 def update_object_position(space, body):
-    """Перемещает отображаемый объект на холсте.
+    circle(space, black, (body.x, body.y), body.r)
 
-    Параметры:
-
-    **space** — холст для рисования.
-
-    **body** — тело, которое нужно переместить.
-    """
-    pass
 
 
 if __name__ == "__main__":

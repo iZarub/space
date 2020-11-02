@@ -16,9 +16,25 @@ RSE = 1.496e11  # среднее расстояние от Солнца до З�
 REM = 384.4e6  # расстояние от Земли до Луны
 FPS = 60
 
+red = (255, 0, 0)
+blue = (0, 0, 255)
+yellow = (255, 255, 0)
+green = (0, 255, 0)
+black = (0, 0, 0)
+
+star = Star()
+star.m = 1.98892E30
+star.color = (255, 0, 0)
+star.r = 2
+star.x = 0
+star.y = 0
+star.vx = 0
+star.vy = 0
+
 
 def main():
     screen = pygame.display.set_mode((window_width, window_width))
+    clock = pygame.time.Clock()
 
 
 
