@@ -2,7 +2,6 @@
 # license: GPLv3
 
 from solar_vis import *
-from solar_model import *
 from solar_input import *
 
 perform_execution = False
