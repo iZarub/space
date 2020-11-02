@@ -24,12 +24,23 @@ black = (0, 0, 0)
 
 star = Star()
 star.m = 1.98892E30
-star.color = (255, 0, 0)
-star.r = 2
+star.color = 'red'
+star.r = 30
 star.x = 0
 star.y = 0
 star.vx = 0
 star.vy = 0
+
+earth = Planet()
+earth.m = 1.98892E30
+earth.color = 'green'
+earth.r = 5
+earth.x = 149.60E9
+earth.y = 0
+earth.vx = 0
+earth.vy = 29.76E3
+
+objects = []
 
 
 def main():
