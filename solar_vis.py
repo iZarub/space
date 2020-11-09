@@ -27,8 +27,7 @@ scale_factor = None
 
 
 def calculate_scale_factor(max_distance):
-    """Вычисляет значение глобальной переменной **scale_factor** по данной характерной длине"""
-    pass
+    scale_factor = window_width / max_distance
 
 
 def scale_x(x):
@@ -42,7 +41,7 @@ def scale_x(x):
     **x** — x-координата модели.
     """
 
-    pass
+    return x * scale_factor
 
 
 def scale_y(y):
@@ -50,18 +49,17 @@ def scale_y(y):
     Принимает вещественное число, возвращает целое число.
     В случае выхода **y** координаты за пределы экрана возвращает
     координату, лежащую за пределами холста.
-    Направление оси развёрнуто, чтобы у модели ось **y** смотрела вверх.
 
     Параметры:
 
     **y** — y-координата модели.
     """
 
-    pass
+    return y * scale_factor
 
 
 def create_star_image(space, star):
-    circle(space, star.color, (star.x, star.y), star.r)
+    circle(space, star.color, (scale_x(star.x), scale_y(star.y)), star.r)
 
 
 

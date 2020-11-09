@@ -8,15 +8,20 @@ gravitational_constant = 6.67408E-11
 
 
 def calculate_force(body, space_objects):
+    """Рассчитываем суммарную силу на тело"""
     for objects in space_objects - body:
         alfa = math.atan((objects.x - body.x) / (objects.y - body.y))
         distance = math.sqrt((objects.x - body.x) ** 2 + (objects.y - body.y) ** 2)
         body.Fx += gravitational_constant * (body.m * objects.m) / distance ** 2 * math.sin(alfa)
         body.Fy += gravitational_constant * (body.m * objects.m) / distance ** 2 * math.cos(alfa)
 
-def move_space_object(body, dt):
 
-    body.vx += Fx
+def move_space_object(body, dt):
+    """Задаём новые координаты тела, изменяем скорость с частотой dt"""
+    body.vx += body.Fx / body.m * dt
+    body.vy += body.Fy / body.m * dt
+    body.x += body.vx * dt
+    body.y += body.vy * dt
 
 
 def recalculate_space_objects_positions(space_objects, dt):
