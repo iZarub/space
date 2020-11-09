@@ -79,5 +79,5 @@ class DrawableObject:
         self.obj = obj
 
     @staticmethod
-    def draw_on(surface, object):
-        circle(surface, object.color, (scale_x(object.x), scale_y(object.y)), object.R)
+    def draw_on(surface, obj):
+        circle(surface, obj.color, (scale_x(obj.x), scale_y(obj.y)), obj.R)

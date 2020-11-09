@@ -1,14 +1,18 @@
 # coding: utf-8
 # license: GPLv3
 
-import pygame as pg
+import tkinter as tk
+from tkinter import filedialog
+
 from solar_vis import *
 from solar_model import *
 from solar_input import *
-from solar_objects import *
 import thorpy
 import time
 import numpy as np
+
+root = tk.Tk()
+root.withdraw()
 
 timer = None
 
@@ -71,10 +75,10 @@ def open_file():
     global browser
     global model_time
 
+    file_dir = filedialog.askopenfilename(initialdir="*")
+    space_objects = read_space_objects_data_from_file(file_dir)
     model_time = 0.0
-    in_filename = "solar_system.txt"
-    space_objects = read_space_objects_data_from_file(in_filename)
-    max_distance = max([max(abs(obj.obj.x), abs(obj.obj.y)) for obj in space_objects])
+    max_distance = max([max(abs(obj.x), abs(obj.y)) for obj in space_objects])
     calculate_scale_factor(max_distance)
 
 
@@ -96,8 +100,7 @@ def slider_reaction(event):
 
 
 def init_ui(screen):
-    global browser
-    slider = thorpy.SliderX(100, (-10, 10), "Simulation speed")
+    slider = thorpy.SliderX(100, (5, 15), "Simulation speed")
     slider.user_func = slider_reaction
     button_stop = thorpy.make_button("Quit", func=stop_execution)
     button_pause = thorpy.make_button("Pause", func=pause_execution)
