@@ -41,7 +41,7 @@ def execution(delta):
     """
     global model_time
     global displayed_time
-    recalculate_space_objects_positions([dr.obj for dr in space_objects], delta)
+    recalculate_space_objects_positions([dr for dr in space_objects], delta)
     model_time += delta
 
 
