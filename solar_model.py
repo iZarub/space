@@ -20,10 +20,12 @@ def calculate_force(body, space_objects):
 
 def move_space_object(body, dt):
     """Задаём новые координаты тела, изменяем скорость с частотой dt"""
-    body.Vx += body.Fx / body.m * dt
-    body.Vy += body.Fy / body.m * dt
-    body.x += body.Vx * dt
-    body.y += body.Vy * dt
+    ax = body.Fx/body.m
+    body.x += body.Vx*dt + ax*dt**2/2
+    body.Vx += ax*dt
+    ay = body.Fy/body.m
+    body.y += body.Vy*dt + ay*dt**2/2
+    body.Vy += ay*dt
 
 
 def recalculate_space_objects_positions(space_objects, dt):
