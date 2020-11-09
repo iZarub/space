@@ -27,7 +27,7 @@ scale_factor = 1
 def calculate_scale_factor(max_distance):
     """Вычисляет значение глобальной переменной **scale_factor** по данной характерной длине"""
     global scale_factor
-    scale_factor = 0.5 * min(window_height - 70, window_width - 70) / max_distance
+    scale_factor = 0.5*min(window_height-70, window_width-70)/max_distance
     print('Scale factor:', scale_factor)
 
 
@@ -40,7 +40,7 @@ def scale_x(x):
     **x** — x-координата модели.
     """
 
-    return int(x * scale_factor) + window_width // 2
+    return int(x*scale_factor) + window_width//2
 
 
 def scale_y(y):
@@ -53,7 +53,7 @@ def scale_y(y):
     **y** — y-координата модели.
     """
 
-    return int(-y * scale_factor) + window_height // 2
+    return int(-y*scale_factor) + window_height//2
 
 
 if __name__ == "__main__":
@@ -79,5 +79,5 @@ class DrawableObject:
         self.obj = obj
 
     @staticmethod
-    def draw_on(surface, obj):
-        circle(surface, obj.color, (scale_x(obj.x), scale_y(obj.y)), obj.R)
+    def draw_on(surface, object_):
+        circle(surface, object_.color, (scale_x(object_.x), scale_y(object_.y)), object_.R)

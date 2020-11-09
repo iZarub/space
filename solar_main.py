@@ -138,8 +138,6 @@ def main():
     Создаёт объекты графического дизайна библиотеки tkinter: окно, холст, фрейм с кнопками, кнопки.
     """
 
-    global physical_time
-    global displayed_time
     global time_step
     global time_speed
     global space
@@ -148,12 +146,15 @@ def main():
     global timer
 
     print('Modelling started!')
-    physical_time = 0
 
     pg.init()
 
-    width = 1000
-    height = 900
+    output_file = 'output.txt'
+    out = open(output_file, 'w')
+    out.close()
+
+    width = 1400
+    height = 800
     screen = pg.display.set_mode((width, height))
     last_time = time.perf_counter()
     drawer = Drawer(screen)
@@ -172,7 +173,10 @@ def main():
         drawer.update(space_objects, box)
         time.sleep(1.0 / 60)
 
+        write_space_objects_data_to_file(output_file, space_objects, model_time)
+
     print('Modelling finished!')
+    pg.quit()
 
 
 if __name__ == "__main__":
