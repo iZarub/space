@@ -171,9 +171,9 @@ def main():
 
         last_time = cur_time
         drawer.update(space_objects, box)
-        time.sleep(1.0 / 60)
 
         write_space_objects_data_to_file(output_file, space_objects, model_time)
+
 
     print('Modelling finished!')
     pg.quit()
