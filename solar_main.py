@@ -7,6 +7,7 @@ from tkinter import filedialog
 from solar_vis import *
 from solar_model import *
 from solar_input import *
+from solar_graph import *
 import thorpy
 import time
 import numpy as np
@@ -133,6 +134,20 @@ def init_ui(screen):
     return menu, box, timer
 
 
+def check_graph_availability(objects):
+    stars = 0
+    planets = 0
+    for obj in objects:
+        if obj.type == 'Planet':
+            planets += 1
+        if obj.type == 'Star':
+            stars += 1
+    if stars == 1 and planets == 1:
+        return True
+    else:
+        return False
+
+
 def main():
     """Главная функция главного модуля.
     Создаёт объекты графического дизайна библиотеки tkinter: окно, холст, фрейм с кнопками, кнопки.
@@ -161,7 +176,10 @@ def main():
     menu, box, timer = init_ui(screen)
     perform_execution = True
 
+    gr = Graph()
+
     while alive:
+        gr_drawing_flag = check_graph_availability(space_objects)
         handle_events(pg.event.get(), menu)
         cur_time = time.perf_counter()
         if perform_execution:
@@ -172,11 +190,14 @@ def main():
         last_time = cur_time
         drawer.update(space_objects, box)
 
-        write_space_objects_data_to_file(output_file, space_objects, model_time)
-
+        if gr_drawing_flag:
+            gr.gain_data(space_objects, model_time)
 
     print('Modelling finished!')
     pg.quit()
+
+    if gr_drawing_flag:
+        gr.show_plot()
 
 
 if __name__ == "__main__":
