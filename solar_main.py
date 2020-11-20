@@ -190,6 +190,8 @@ def main():
         last_time = cur_time
         drawer.update(space_objects, box)
 
+        write_space_objects_data_to_file(output_file, space_objects, model_time)
+
         if gr_drawing_flag:
             gr.gain_data(space_objects, model_time)
 
